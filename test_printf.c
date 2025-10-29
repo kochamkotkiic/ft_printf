@@ -1,6 +1,4 @@
-#include <stdio.h>
-
-int ft_printf(const char *fmt, ...);
+#include "ft_printf.h"
 
 int main(void)
 {

@@ -1,5 +1,4 @@
-#include "../libft/libft.h"
-#include <stdarg.h>
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -16,8 +15,22 @@ int	ft_printf(const char *format, ...)
 		{
 			i ++;
 			if (format[i]=='c')
-				printed += ft_putchar(va_arg(args, char));//pobiera arg po ,
-			//...
+				printed += handle_c(args);
+			else if (format[i] == 's')
+				printed += handle_s(args);
+			else if (format[i] == 'd' || format[i] == 'i')
+				printed += handle_d(args);
+			else if (format[i] == 'p')
+				printed += handle_p(args);
+			else if (format[i] == 'x')
+				printed += handle_x(args);
+			else if (format[i] == 'X')
+				printed += handle_X(args);
+			else if (format[i] == '%')
+			{
+				printed += 1;
+				write(1, '%', 2);
+			}
 		}
 		else
 		{
