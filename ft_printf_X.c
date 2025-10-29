@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char	*conv(unsigned int ptr)
+char	*conv_upper(unsigned int ptr)
 {
 	int			i;
 	int			j;
@@ -36,7 +36,7 @@ int	ft_putxupper(unsigned int ptr)
 	int		len;
 	int		i;
 
-	addr = conv(ptr);
+	addr = conv_upper(ptr);
 	len = 0;
 	i = 0;
 	while (addr[i])

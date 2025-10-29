@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int	leng(long n)
+int	leng(long n)
 {
 	int	c;
 
@@ -40,12 +40,12 @@ char	*ft_utoa(unsigned int n)
 	}
 	return (res);
 }
-int	ft_putnbr(unsigned int n)
+int	ft_putnbr_unsigned(unsigned int n)
 {
 	char	*str;
 	int	len;
 
-	str = ft_itoa(n);
+	str = ft_utoa(n);
 	if (!str)
 		return (0);
 	len = ft_putstr(str);
@@ -58,5 +58,5 @@ int	handle_u(va_list args)
 	unsigned int	nbr;
 
 	nbr = va_arg(args, unsigned int);
-	return (ft_putnbr(nbr));
+	return (ft_putnbr_unsigned(nbr));
 }

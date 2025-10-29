@@ -6,10 +6,13 @@ char	*conv(unsigned int ptr)
 	int			j;
 
 	char		*base;
-	static char	hex[17];
+	char		*hex;
 	char		tmp;
 
 	base = "0123456789abcdef";
+	hex = malloc(17);
+	if (!hex)
+		return (NULL);
 	i = 0;
 	j = 0;
 	if (ptr == 0)

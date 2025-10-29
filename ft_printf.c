@@ -24,12 +24,14 @@ int	ft_printf(const char *format, ...)
 				printed += handle_p(args);
 			else if (format[i] == 'x')
 				printed += handle_x(args);
+			else if (format[i] == 'u')
+				printed += handle_u(args);
 			else if (format[i] == 'X')
 				printed += handle_X(args);
 			else if (format[i] == '%')
 			{
 				printed += 1;
-				write(1, '%', 2);
+				write(1, "%", 1);
 			}
 		}
 		else

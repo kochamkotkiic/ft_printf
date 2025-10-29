@@ -3,25 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_p.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emilka <emilka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:41:26 by emurbane          #+#    #+#             */
-/*   Updated: 2025/10/29 14:10:54 by emurbane         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:43:55 by emilka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*conv(unsigned long ptr)
+char	*conv_long(unsigned long ptr)
 {
 	int			i;
 	int			j;
 
 	char		*base;
-	static char	hex[17];
+	char		*hex;
 	char		tmp;
 
 	base = "0123456789abcdef";
+	hex = malloc(17);
+	if (!hex)
+		return (NULL);
 	i = 0;
 	j = 0;
 	if (ptr == 0)
@@ -50,15 +53,14 @@ int	ft_putvoid(unsigned long ptr)
 
 	if (!ptr)
 		return (write(1, "(nil)", 5));
-	addr = conv(ptr);
-	len = 2;
+	addr = conv_long(ptr);
+	if (!addr)
+		return (0);
+	len = write(1, "0x", 2);
 	i = 0;
-	write(1, "0x", 2);
 	while (addr[i])
-	{
-		len += ft_putchar(addr[i]);
-		i ++;
-	}
+		len += ft_putchar(addr[i++]);
+	free(addr);
 	return (len);
 }
 
