@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_d.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:09:05 by emurbane          #+#    #+#             */
+/*   Updated: 2025/10/31 15:09:41 by emurbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char	*allocate(int len)
@@ -40,7 +52,7 @@ char	*ft_itoa(int n)
 int	ft_putnbr_int(int n)
 {
 	char	*str;
-	int	len;
+	int		len;
 
 	str = ft_itoa(n);
 	if (!str)

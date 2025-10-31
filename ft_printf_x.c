@@ -1,35 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_x.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:26:01 by emurbane          #+#    #+#             */
+/*   Updated: 2025/10/31 15:31:53 by emurbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*conv(unsigned int ptr)
 {
-	int			i;
-	int			j;
-
-	char		*base;
-	char		*hex;
-	char		tmp;
+	char	*base;
+	char	*hex;
+	int		i;
 
 	base = "0123456789abcdef";
 	hex = malloc(17);
 	if (!hex)
 		return (NULL);
 	i = 0;
-	j = 0;
 	if (ptr == 0)
 		hex[i++] = '0';
 	while (ptr > 0)
 	{
 		hex[i++] = base[ptr % 16];
-		ptr /= 16;
+		ptr = ptr / 16;
 	}
 	hex[i] = '\0';
-	while (j < i / 2)
-	{
-		tmp = hex[j];
-		hex[j] = hex[i - 1 - j];
-		hex[i - 1 - j] = tmp;
-		j ++;
-	}
 	return (hex);
 }
 
@@ -41,12 +42,12 @@ int	ft_putxlower(unsigned int ptr)
 
 	addr = conv(ptr);
 	len = 0;
-	i = 0;
-	while (addr[i])
-	{
+	i = ft_strlen(addr);
+	if (!addr)
+		return (0);
+	while (--i >= 0)
 		len += ft_putchar(addr[i]);
-		i ++;
-	}
+	free(addr);
 	return (len);
 }
 

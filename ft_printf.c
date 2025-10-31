@@ -1,44 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:40:58 by emurbane          #+#    #+#             */
+/*   Updated: 2025/10/31 15:41:55 by emurbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
+static int	handle_format(char spec, va_list args)
+{
+	if (spec == 'c')
+		return (handle_c(args));
+	else if (spec == 's')
+		return (handle_s(args));
+	else if (spec == 'd' || spec == 'i')
+		return (handle_d(args));
+	else if (spec == 'p')
+		return (handle_p(args));
+	else if (spec == 'x')
+		return (handle_x(args));
+	else if (spec == 'u')
+		return (handle_u(args));
+	else if (spec == 'X')
+		return (handle_x_upper(args));
+	else if (spec == '%')
+		return (write(1, "%", 1));
+	return (0);
+}
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	i;
-	int	printed;
+	int		i;
+	int		printed;
 
 	i = 0;
 	printed = 0;
 	va_start(args, format);
-	while(format[i])
+	while (format[i])
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
-			i ++;
-			if (format[i]=='c')
-				printed += handle_c(args);
-			else if (format[i] == 's')
-				printed += handle_s(args);
-			else if (format[i] == 'd' || format[i] == 'i')
-				printed += handle_d(args);
-			else if (format[i] == 'p')
-				printed += handle_p(args);
-			else if (format[i] == 'x')
-				printed += handle_x(args);
-			else if (format[i] == 'u')
-				printed += handle_u(args);
-			else if (format[i] == 'X')
-				printed += handle_X(args);
-			else if (format[i] == '%')
-			{
-				printed += 1;
-				write(1, "%", 1);
-			}
+			i++;
+			printed += handle_format(format[i], args);
 		}
 		else
-		{
 			printed += ft_putchar(format[i]);
-		}
-		i ++;
+		i++;
 	}
 	va_end(args);
 	return (printed);

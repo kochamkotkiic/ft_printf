@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_s.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:24:39 by emurbane          #+#    #+#             */
+/*   Updated: 2025/10/31 15:25:09 by emurbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_putstr(char *s)
@@ -6,8 +18,8 @@ int	ft_putstr(char *s)
 
 	i = 0;
 	if (!s)
-		return(write(1, "(null)", 6));
-	while(s[i])
+		return (write(1, "(null)", 6));
+	while (s[i])
 	{
 		ft_putchar(s[i]);
 		i ++;

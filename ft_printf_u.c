@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_u.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emurbane <emurbane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 15:25:22 by emurbane          #+#    #+#             */
+/*   Updated: 2025/10/31 15:25:48 by emurbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	leng(long n)
@@ -5,8 +17,8 @@ int	leng(long n)
 	int	c;
 
 	c = 0;
-	if (n == 0)
-		return (1);
+	if (n <= 0)
+		c ++;
 	while (n != 0)
 	{
 		n /= 10;
@@ -14,6 +26,7 @@ int	leng(long n)
 	}
 	return (c);
 }
+
 //co gdy chcemu double wypritnowac np?
 char	*ft_utoa(unsigned int n)
 {
@@ -25,7 +38,7 @@ char	*ft_utoa(unsigned int n)
 	i = len - 1;
 	res = malloc(len + 1);
 	if (!res)
-		return NULL;
+		return (NULL);
 	if (n == 0)
 	{
 		res[0] = '0';
@@ -40,10 +53,11 @@ char	*ft_utoa(unsigned int n)
 	}
 	return (res);
 }
+
 int	ft_putnbr_unsigned(unsigned int n)
 {
 	char	*str;
-	int	len;
+	int		len;
 
 	str = ft_utoa(n);
 	if (!str)
